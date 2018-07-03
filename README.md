@@ -8,7 +8,9 @@ The Blinkt is a low-profile strip of eight super-bright, color LED indicators th
 
 ## How It Works ##
 
-This controller is designed to be deployed as a [DaemonSet](https://kubernetes.io/docs/admin/daemons/) to control Blinkt devices connected to Raspberry Pi Kubernetes worker nodes. Once deployed, every Pod with a label of `blinkt: show` that lands on a node will cause an LED indicator on that node's Blinkt to turn on (only the first 8 Pods can be displayed). As new Pods get created or deleted the light display will adjust accordingly. The color of the indicator can be customized by editing the `COLOR` environment variable in the included sample deployment file. Optionally, each Pod can define it's own color by having the label `blinktColor: "FF0000"` (an Hex, CSS-like color value without the hash `#` sign).
+This controller is designed to be deployed as a [DaemonSet](https://kubernetes.io/docs/admin/daemons/) to control Blinkt devices connected to Raspberry Pi Kubernetes worker nodes. Once deployed, every Pod with a label of `blinktShow: true` that lands on a node will cause an LED indicator on that node's Blinkt to turn on (only the first 8 Pods can be displayed). As new Pods get created or deleted the light display will adjust accordingly. The color of the indicator can be customized by editing the `COLOR` environment variable in the included sample deployment file. Optionally, each Pod can define it's own color by having the label `blinktColor: "FF0000"` (an Hex, CSS-like color value without the hash `#` sign).
+
+You can also define `blinktColor: "cpu"` in order to adjust the color of each pod based on CPU usage. This requires Heapster to be running on the cluster.
 
 ## Acknowledgements ##
 
@@ -26,7 +28,7 @@ Physically install a [Pimoroni Blinkt](https://shop.pimoroni.com/products/blinkt
 kubectl label node <nodename> blinktImage=pods
 ```
 
-*If you want to run the Pod on all nodes you can skip this step and remove the `nodeSelector` from the DaemonSet Descriptor*
+The `pods` image will add a Blinkt LED per pod that is running on a given node. The `nodes` image will light up a LED for each node that is in the cluster and ready - it makes sense to run the `node` image on the master node, typically.
 
 ## Usage ##
 
@@ -39,10 +41,11 @@ kubectl create -f kubernetes/blinkt-k8s-controller-rbac.yaml
 Create the DaemonSet using the included Resource Descriptor:
 
 ```sh
-kubectl create -f kubernetes/blinkt-k8s-controller-ds.yaml
+kubectl create -f kubernetes/blinkt-k8s-controller-pods.yaml
+kubectl create -f kubernetes/blinkt-k8s-contorller-nodes.yaml
 ```
 
-Label Pods with `blinkt: show` to have them show up in the Blinkt. For example:
+Label Pods with `blinktShow: true` to have them show up in the Blinkt. For example:
 ```yaml
 kind: Deployment
 apiVersion: extensions/v1beta1
