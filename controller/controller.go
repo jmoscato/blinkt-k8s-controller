@@ -22,7 +22,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/ngpitt/blinkt"
+	"github.com/elafargue/blinkt"
 
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/client-go/tools/cache"

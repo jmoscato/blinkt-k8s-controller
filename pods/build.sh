@@ -5,4 +5,4 @@
 
 set -xe
 
-GOOS=linux GOARCH=arm go build -v
+CGO_ENABLED=0 GOOS=linux GOARCH=arm go build -v

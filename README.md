@@ -20,10 +20,10 @@ A Raspberry Pi-based Kubernetes cluster. Hypriot has a good [blog post](https://
 
 Physically install a [Pimoroni Blinkt](https://shop.pimoroni.com/products/blinkt) on all the Raspberry Pi worker nodes you want to use for display. **No additional sofware or setup is required for the Blinkt**.
 
-*Note: For greater control, every node equiped with a Blinkt should be labeled with `deviceType: blinkt`. A [nodeSelector](https://kubernetes.io/docs/admin/daemons/#running-pods-on-only-some-nodes) can then be used to insure that only labeled nodes run the Controller Pod. For example:*
+*Note: For greater control, every node equiped with a Blinkt should be labeled with `blinktImage: pods` or `blinktImage: nodes`. A [nodeSelector](https://kubernetes.io/docs/admin/daemons/#running-pods-on-only-some-nodes) can then be used to insure that only labeled nodes run the Controller Pod. For example:*
 
 ```sh
-kubectl label node <nodename> deviceType=blinkt
+kubectl label node <nodename> blinktImage=pods
 ```
 
 *If you want to run the Pod on all nodes you can skip this step and remove the `nodeSelector` from the DaemonSet Descriptor*
@@ -53,7 +53,7 @@ spec:
     metadata:
       labels:
         ...
-        blinkt: show
+        blinktShow: true
     spec:
       ...
 ```

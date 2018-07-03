@@ -18,9 +18,9 @@ import (
 	"flag"
 	"time"
 
-	"github.com/ngpitt/blinkt"
-	"github.com/ngpitt/blinkt-k8s-controller/controller"
-	"github.com/ngpitt/blinkt-k8s-controller/helpers"
+	"github.com/elafargue/blinkt"
+	"github.com/elafargue/blinkt-k8s-controller/controller"
+	"github.com/elafargue/blinkt-k8s-controller/helpers"
 
 	"k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
