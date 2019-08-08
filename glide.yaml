@@ -3,4 +3,4 @@ import:
 - package: github.com/elafargue/blinkt
   version: master
 - package: k8s.io/metrics
-  version: kubernetes-1.10.0
+  version: kubernetes-1.13.0
