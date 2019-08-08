@@ -18,7 +18,7 @@ spec:
         blinktImage: pods
       containers:
       - name: blinkt-k8s-controller-pods
-        image: elafargue/blinkt-k8s-controller-pods:v1
+        image: rebelinblue/blinkt-k8s-controller-pods:v1
         args:
         - -brightness=0.25
         - -resync_period=10s

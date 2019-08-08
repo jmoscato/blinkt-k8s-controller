@@ -5,5 +5,5 @@
 
 set -xe
 
-docker build -t elafargue/blinkt-k8s-controller-nodes:v1 .
-docker push elafargue/blinkt-k8s-controller-nodes
+docker build -t rebelinblue/blinkt-k8s-controller-nodes:v1 .
+docker push rebelinblue/blinkt-k8s-controller-nodes

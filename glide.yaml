@@ -1,4 +1,4 @@
-package: github.com/elafargue/blinkt-k8s-controller
+package: github.com/rebelinblue/blinkt-k8s-controller
 import:
 - package: github.com/elafargue/blinkt
   version: master
